@@ -7,7 +7,12 @@
  */
 class Rofra_Salesorderitemgrid_Adminhtml_Order_ItemsController extends Mage_Adminhtml_Controller_Action
 {
-    public function indexAction()
+	protected function _isAllowed()
+	{
+		return Mage::getSingleton('admin/session')->isAllowed('admin/sales/order_items');
+	}
+
+	public function indexAction()
     {
         $this->loadLayout()->_setActiveMenu('sales/order_items');
         $this->_addContent($this->getLayout()->createBlock('salesorderitemgrid/adminhtml_order_items'));
