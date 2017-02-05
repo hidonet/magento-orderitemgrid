@@ -78,6 +78,16 @@
 							<show_in_default>1</show_in_default>
 							<show_in_website>1</show_in_website>
 						</showqtycancelled>
+
+						<showqtypacked translate="label">
+							<label>Show "Qty Packed"</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>55</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+						</showqtypacked>
+						
 						<showqtyshipped translate="label">
 							<label>Show "Qty Shipped"</label>
 							<frontend_type>select</frontend_type>
@@ -166,6 +176,37 @@
 						</page>
 					</fields>
 				</defaults>
+				<auto_status_change translate="label">
+					<label>Auto Change Status</label>
+					<sort_order>500</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<fields>
+						<active translate="label">
+							<label>Auto Change Status When All Products Packed</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+						</active>
+						<target_status translate="label">
+							<label>Change status to this</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>20</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+						</target_status>
+						<auto_refresh translate="label">
+							<label>Auto Refresh Page After Order Status Change</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>30</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+						</auto_refresh>
+					</fields>
+				</auto_status_change>
 			</groups>
 		</salesorderitemgrid>
 	</sections>

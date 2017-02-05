@@ -33,11 +33,10 @@ class Rofra_Salesorderitemgrid_Block_Adminhtml_Order_Items_Grid extends Mage_Adm
 		$collection = Mage::getModel('sales/order_item')->getCollection();
         $collection->join(array('og' =>'sales/order_grid'), 'main_table.order_id = og.entity_id', array('billing_name', 'shipping_name', 'increment_id', 'status', 'og_created_at' =>'og.created_at') );
         $collection->join(array('si' => 'cataloginventory/stock_item'), 'main_table.product_id = si.product_id', array('si_qty' => 'si.qty'));
-		$collection->getSelect()->join(array('br' =>'catalog_product_entity_varchar'), ' br.attribute_id='.$barcode_attr_id.' AND br.entity_id = si.product_id AND br.store_id = 0 ',array('barcode' =>'br.value'));
 
 		// One line per entry (configurable / simple management)
         $collection->addAttributeToFilter('parent_item_id', array('is' => new Zend_Db_Expr('null')));
-		
+
         $this->setCollection($collection);
         parent::_prepareCollection();
         return $this;
@@ -108,7 +107,7 @@ class Rofra_Salesorderitemgrid_Block_Adminhtml_Order_Items_Grid extends Mage_Adm
                 'header' => Mage::helper('salesorderitemgrid')->__('Barcode'),
                 'sortable' => true,
                 'index' => 'barcode',
-                'filter_index' => 'br.value',
+                'filter_index' => 'barcode',
         ));
 
         $this->addColumn('name', array(
@@ -174,6 +173,16 @@ class Rofra_Salesorderitemgrid_Block_Adminhtml_Order_Items_Grid extends Mage_Adm
                     'index'    => 'qty_backordered',
                     'type'     => 'currency',
                     'renderer' => 'Rofra_Salesorderitemgrid_Block_Adminhtml_Order_Items_Grid_Renderer_Itemqty',
+            ));
+        }
+
+        if (Mage::getStoreConfig('salesorderitemgrid/columns/showqtypacked')) {
+            $this->addColumn('qty_packed', array(
+                    'header'     => Mage::helper('salesorderitemgrid')->__('Qty Packed'),
+                    'align'      => 'center',
+                    'sortable'   => true,
+                    'renderer'   => 'Rofra_Salesorderitemgrid_Block_Adminhtml_Order_Items_Grid_Renderer_InputInline',
+                    'index'      => 'qty_packed'
             ));
         }
 

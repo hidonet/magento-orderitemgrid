@@ -5,7 +5,10 @@ function updateField(button, fieldId)
 	name = $(button).previous('input').getAttribute('name');
     new Ajax.Request('<?php echo Mage::helper('adminhtml')->getUrl('*/*/ajaxUpdateField') ?>', {
         method: 'post',
-        parameters: { id: fieldId, title: val, attr: name}
+        parameters: { id: fieldId, title: val, attr: name},
+		onSuccess: function(transport){
+
+		}
     });
 }
 </script>
@@ -13,11 +16,42 @@ function updateField(button, fieldId)
 <script type="text/javascript">
 function updateTextualField(input, fieldId)
 {
-	val = $(input).getValue();
-	name = $(input).getAttribute('name');
+	a_val = $(input).getValue();
+	a_name = $(input).getAttribute('name');
     new Ajax.Request('<?php echo Mage::helper('adminhtml')->getUrl('*/*/ajaxUpdateField') ?>', {
         method: 'post',
-        parameters: { id: fieldId, title: val, attr: name}
-    });
+        parameters: { id: fieldId, title: a_val, attr: a_name},
+		onSuccess: function(transport){
+			if(a_name == 'qty_packed'){
+				var json = transport.responseText.evalJSON(true);
+				$(input).setValue(json.saved_qty_packed);
+
+				$(input).removeClassName('qty_packed_empty');
+				$(input).removeClassName('qty_packed_half');
+				$(input).removeClassName('qty_packed_ok');
+
+				if(json.is_qty_ok == 1)
+				{
+					$(input).addClassName('qty_packed_ok');
+				}
+				else 
+				{
+					if(json.saved_qty_packed == 0)
+					{
+						$(input).addClassName('qty_packed_empty');
+					}
+					else
+					{
+						$(input).addClassName('qty_packed_half');
+					}
+				}
+
+				if(json.order_status_changed == 1)
+				{
+					window.location.reload();
+				}
+			}
+		}
+	});
 }
 </script>

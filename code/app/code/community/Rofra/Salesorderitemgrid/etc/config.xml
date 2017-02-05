@@ -2,7 +2,7 @@
 <config>
 	<modules>
 		<Rofra_Salesorderitemgrid>
-			<version>1.0.2</version>
+			<version>1.0.3</version>
 		</Rofra_Salesorderitemgrid>
 	</modules>
 	<global>
@@ -11,6 +11,7 @@
 			<quote>
 				<item>
 					<product_attributes>
+						<qty_packed />
 						<column1 />
 						<column2 />
 						<column3 />

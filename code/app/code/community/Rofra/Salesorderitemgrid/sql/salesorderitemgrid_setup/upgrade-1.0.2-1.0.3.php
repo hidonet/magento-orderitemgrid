@@ -23,9 +23,7 @@ $options = array(
 );
 
 foreach ($entities as $entity) {
-    $installer->addAttribute($entity, Rofra_Salesorderitemgrid_Helper_Attributes::COLUMN1, $options);
-    $installer->addAttribute($entity, Rofra_Salesorderitemgrid_Helper_Attributes::COLUMN2, $options);
-    $installer->addAttribute($entity, Rofra_Salesorderitemgrid_Helper_Attributes::COLUMN3, $options);
+    $installer->addAttribute($entity, 'qty_packed', $options);
 }
 
 

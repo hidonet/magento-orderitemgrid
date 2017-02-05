@@ -1,6 +1,9 @@
 <?xml version="1.0"?>
 <layout>
 	<adminhtml_order_items_index>
+		<reference name="head">
+			<action method="addCss"><stylesheet>rofra_orderitems.css</stylesheet></action>
+		</reference>
         <reference name="js">
             <block type="core/template" template="salesorderitemgrid/inline-edit.phtml" />
         </reference>

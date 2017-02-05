@@ -1,0 +1,25 @@
+.qty_packed{
+	font-size: 24px !important;
+    width: 50px !important;
+    border-radius: 5px;
+    padding: 5px !important;
+    text-align: center;
+	float:left;
+}
+
+.qty_packed_ok{
+	background:green !important;
+	color:white;
+}
+	
+.qty_packed_half{
+	background:darkorange !important;
+	color:white;
+}
+	
+.qty_packed_empty{
+	background:darkgray !important;
+	color:white;
+}
+	
+
