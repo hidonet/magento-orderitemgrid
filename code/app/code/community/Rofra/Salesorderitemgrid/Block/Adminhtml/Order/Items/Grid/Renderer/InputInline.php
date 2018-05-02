@@ -10,8 +10,11 @@ class Rofra_Salesorderitemgrid_Block_Adminhtml_Order_Items_Grid_Renderer_InputIn
 {
     public function render(Varien_Object $row)
     {	
+		$css_class = null;
+
 		if ($this->getColumn()->getIndex() == 'qty_packed') 
 		{
+
 			if ($row->getData('qty_invoiced') == $row->getData('qty_packed')) 
 			{
 				$css_class = 'qty_packed_ok';
